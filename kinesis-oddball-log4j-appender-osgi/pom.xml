@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <artifactId>kinesis-oddball-log4j-appender</artifactId>
+        <groupId>uk.co.revsys</groupId>
+        <version>0.1.0-SNAPSHOT</version>
+    </parent>
+
+    <groupId>uk.co.revsys</groupId>
+    <artifactId>kinesis-oddball-log4j-appender-osgi</artifactId>
+    <version>0.1.0-SNAPSHOT</version>
+    <packaging>bundle</packaging>
+
+    <name>kinesis-oddball-log4j-appender-osgi OSGI Bundle</name>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.ops4j.pax.logging</groupId>
+            <artifactId>pax-logging-service</artifactId>
+            <version>1.7.2</version>
+        </dependency>        
+        <dependency>
+            <groupId>uk.co.revsys</groupId>
+            <artifactId>kinesis-log4j-appender</artifactId>
+            <version>0.1.0-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>maven-bundle-plugin</artifactId>
+                <version>2.3.7</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <instructions>
+                        <Bundle-SymbolicName>uk.co.revsys.kinesis.log4j.kinesis-appender</Bundle-SymbolicName>
+                        <Export-Package>uk.co.revsys.kinesis.log4j.*</Export-Package>
+                        <Fragment-Host>org.ops4j.pax.logging.pax-logging-service</Fragment-Host>
+                        <Embed-Dependency>kinesis-log4j-appender</Embed-Dependency>
+                        <_failok>true</_failok>
+                    </instructions>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+
+</project>
