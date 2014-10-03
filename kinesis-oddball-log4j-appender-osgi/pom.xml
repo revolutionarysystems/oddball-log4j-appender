@@ -22,10 +22,11 @@
         <dependency>
             <groupId>org.ops4j.pax.logging</groupId>
             <artifactId>pax-logging-service</artifactId>
-            <version>1.7.2</version>
+            <version>1.6.10</version>
+            <scope>provided</scope>
         </dependency>        
         <dependency>
-            <groupId>uk.co.revsys</groupId>
+            <groupId>uk.co.revsys.aws</groupId>
             <artifactId>kinesis-log4j-appender</artifactId>
             <version>0.1.0-SNAPSHOT</version>
         </dependency>
@@ -40,10 +41,11 @@
                 <extensions>true</extensions>
                 <configuration>
                     <instructions>
-                        <Bundle-SymbolicName>uk.co.revsys.kinesis.log4j.kinesis-appender</Bundle-SymbolicName>
-                        <Export-Package>uk.co.revsys.kinesis.log4j.*</Export-Package>
-                        <Fragment-Host>org.ops4j.pax.logging.pax-logging-service</Fragment-Host>
-                        <Embed-Dependency>kinesis-log4j-appender</Embed-Dependency>
+                        <Import-Package>javax.net.ssl,javax.crypto.*,javax.security.*,!*</Import-Package>
+						<!-- embed all compile and runtime scope dependencies -->
+						<Embed-Dependency>*;scope=compile|runtime;inline=true</Embed-Dependency>
+						<!-- the host for this fragment bundle -->
+						<Fragment-Host>org.ops4j.pax.logging.pax-logging-service</Fragment-Host>
                         <_failok>true</_failok>
                     </instructions>
                 </configuration>
